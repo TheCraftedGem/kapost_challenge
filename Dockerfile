@@ -4,10 +4,10 @@ RUN mkdir /kapost
 
 WORKDIR /kapost
 
-COPY requirements.txt /kapost
+COPY requirements.txt .
 RUN pip install –no-cache-dir -r requirements.txt
 
-COPY kapost.py /kapost
+COPY kapost.py .
 
 ENTRYPOINT [ “python”, “-u”, “./kapost.py”]
 
