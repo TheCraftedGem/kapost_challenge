@@ -1,8 +1,9 @@
+import pdb
 import argparse
 import boto3
 import sys
 
-#Copies Files From Source Bucket To Destination Bucket If Filesize Is Over Threshold
+
 def main(argv):
     args = cli(argv)
     src = args.src
@@ -14,15 +15,17 @@ def main(argv):
     src_bucket = s3.Bucket(src)
     dst_bucket = s3.Bucket(dst)
 
+
+    
     for o in src_bucket.objects.all():
         if (o.size / (2 ** 20)) > threshold:
-            source = {
-            'Bucket': src_bucket,
+            copy_source = {
+            'Bucket': src_bucket.name,
             'Key': o.key
             }
-            dst_bucket.copy(source, o.key)
+            dst_bucket.copy(copy_source, o.key)
     
-#Creates CLI Argument Parser For Main Function
+
 def cli(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -38,6 +41,5 @@ def cli(argv):
         required=True,
     )
     return parser.parse_args(argv)
-
 
 main(sys.argv[1:])
