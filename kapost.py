@@ -1,7 +1,7 @@
 import argparse
 import boto3
 
-
+#Copies Files From Source Bucket To Destination Bucket If Filesize Is Over Threshold
 def main(argv):
     args = cli(argv)
     src = args.src
@@ -21,7 +21,7 @@ def main(argv):
             }
             dst_bucket.copy(source, o.key)
     
-
+#Creates CLI Argument Parser For Main Function
 def cli(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument(
