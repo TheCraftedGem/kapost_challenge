@@ -20,7 +20,7 @@ def main(argv):
     for o in src_bucket.objects.all():
         if (o.size / (2 ** 20)) > threshold:
             copy_source = {
-            'Bucket': src_bucket.name,
+            'Bucket': o.bucket_name,
             'Key': o.key
             }
             dst_bucket.copy(copy_source, o.key)
