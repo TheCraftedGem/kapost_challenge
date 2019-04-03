@@ -1,5 +1,6 @@
 import argparse
 import boto3
+import sys
 
 #Copies Files From Source Bucket To Destination Bucket If Filesize Is Over Threshold
 def main(argv):
@@ -37,3 +38,6 @@ def cli(argv):
         required=True,
     )
     return parser.parse_args(argv)
+
+
+main(sys.argv[1:])
