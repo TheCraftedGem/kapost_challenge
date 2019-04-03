@@ -9,16 +9,16 @@ import boto3
 s3 = boto3.resource('s3')
 bucket_1 = s3.Bucket('177621984')
 bucket_2 = s3.Bucket('198421776')
-threshold = 1000
+threshold = 1000MB
 
 
 def filter_by_threshold(bucket_1, bucket_2, threshold):
     for o in bucket_1.objects.all():
-        if (o.size > threshold) in o.key:
-            print (copy_source = {
+        if (Content-Length > threshold) in o.key:
+            copy_source = {
             'Bucket': bucket_1,
             'Key': o.key
-            })
+            }
         s3.meta.client.copy(copy_source, 'bucket_2', 'otherkey')
 
 
